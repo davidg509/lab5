@@ -14,9 +14,15 @@
 
     returns undefined (array is sorted in place)
 */
+$(function(){
+    sortObjArray(objArray, propName);
+    render(entries, $('.template'), $('.addressBook'));
+})
+
 function sortObjArray(objArray, propName) {
     if (!objArray.sort)
         throw new Error('The objArray parameter does not seem to be an array (no sort method)');
+
 
     //sort the array supplying a custom compare function
     objArray.sort(function(a,b) {
@@ -33,4 +39,30 @@ function sortObjArray(objArray, propName) {
             return 1;
     });
 } //sortObjArray()
+
+function render(entries){
+    var instance;
+    var template = $( '.template' );
+    var addressBook = $('.address-book');
+    addressBook.empty();
+    $.each(entires function(){
+        instance = template.clone();
+        for(prop in this){
+            if(prop === 'pic'){
+                instance.find('.'
+                src: this.prop;
+                alt: 'Picture of the Employee' + this[prop];
+            }else{
+                find('.'+ prop).html(this{prop]);
+            }
+         } 
+            //satnce.find('.first').html(this.first);
+            //stance.find('.last').html(this.last);
+     //     instance.find('.title').html(this.title);
+     //     instance.find('.dept').html(this.dept);
+
+        instance.removeClass('template');
+        addressBook.append(instance);
+    }
+}
 
