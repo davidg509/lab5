@@ -14,10 +14,7 @@
 
     returns undefined (array is sorted in place)
 */
-$(function(){
-    sortObjArray(objArray, propName);
-    render(entries, $('.template'), $('.addressBook'));
-})
+
 
 function sortObjArray(objArray, propName) {
     if (!objArray.sort)
@@ -45,24 +42,29 @@ function render(entries){
     var template = $( '.template' );
     var addressBook = $('.address-book');
     addressBook.empty();
-    $.each(entires function(){
+    $.each(Employees.entries, function(){
         instance = template.clone();
         for(prop in this){
             if(prop === 'pic'){
-                instance.find('.'
-                src: this.prop;
-                alt: 'Picture of the Employee' + this[prop];
-            }else{
-                find('.'+ prop).html(this{prop]);
-            }
-         } 
+                instance.find('.pic').attr({
+                    src: this[prop],
+                    alt: 'Picture of the Employee' + this[prop]
+                });    
+            }else {
+                instance.find('.'+ prop).html(this[prop]);
+            } 
             //satnce.find('.first').html(this.first);
             //stance.find('.last').html(this.last);
      //     instance.find('.title').html(this.title);
      //     instance.find('.dept').html(this.dept);
-
-        instance.removeClass('template');
-        addressBook.append(instance);
-    }
+            instance.removeClass('template');
+            addressBook.append(instance);
+        }
+    });
 }
+
+$(function(){
+    sortObjArray(Employees.entries, 'last');
+    render(Employees);
+})
 
