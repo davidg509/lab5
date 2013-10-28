@@ -37,6 +37,16 @@ function sortObjArray(objArray, propName) {
     });
 } //sortObjArray()
 
+    $('.btn').click(buttonPush);
+    function buttonPush(){
+    var sortBtn = $(this);
+    var buttonName = sortBtn.attr('data-sortby');
+    sortObjArray(Employees.entries, buttonName);
+    $('btn').removeClass('active');
+    sortBtn.addClass('active');
+    render(Employees.entries);    
+    }
+
 function render(entries){
     var instance;
     var template = $( '.template' );
